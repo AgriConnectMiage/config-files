@@ -27,7 +27,6 @@ spring:
             - Path=/api/management/**
           filters:
             - RewritePath=/api/management(?<segment>/?.*), /$\{segment}
-             #Service CLIENTS-SERVICE
           metadata:
             cors:
               allowedOrigins: '*'
