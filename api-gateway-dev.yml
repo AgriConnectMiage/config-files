@@ -27,6 +27,17 @@ spring:
             - Path=/api/management/**
           filters:
             - RewritePath=/api/management(?<segment>/?.*), /$\{segment}
+             #Service CLIENTS-SERVICE
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - DELETE
+                - PUT
+                - PATCH
+              allowedHeaders: '*'
       enabled: on
     config:
       service-registry:
