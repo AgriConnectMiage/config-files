@@ -36,7 +36,11 @@ spring:
                 - PUT
                 - DELETE
               allowedHeaders: '*'
-              maxAge: 30
+      enabled: on
+    config:
+      service-registry:
+        auto-registration:
+          register-management: on
 eureka:
   client:
     serviceUrl:
