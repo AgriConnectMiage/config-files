@@ -1,8 +1,6 @@
 spring:
   application:
     name: api-gateway
-  profiles:
-    active: dev
   cloud:
     gateway:
       discovery:
@@ -21,8 +19,6 @@ spring:
           '[/**]':
             allowed-origins: "http://localhost:3000"
             allowed-methods: "*"
-server:
-  port: 80
 
 eureka:
   client:
