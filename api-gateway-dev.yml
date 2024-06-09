@@ -7,6 +7,19 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "http://localhost:3000"
+            allowed-methods:               
+              - GET
+              - POST
+              - DELETE
+              - PUT
+              - PATCH
+              - OPTIONS
+        add-to-simple-url-handler-mapping: true
       routes:
         - id: management-service
           uri: lb://management-service/
@@ -14,12 +27,16 @@ spring:
             - Path=/api/management/**
           filters:
             - RewritePath=/api/management(?<segment>/?.*), /$\{segment}
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowed-origins: "http://localhost:3000"
-            allowed-methods: "*"
-
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+              allowedHeaders: '*'
+              maxAge: 30
 eureka:
   client:
     serviceUrl:
