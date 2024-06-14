@@ -79,5 +79,5 @@ eureka:
   client:
     serviceUrl:
       #      Docker config
-      #      defaultZone: http://discovery:8761/eureka
-      defaultZone: http://localhost:8761/eureka
+            defaultZone: http://discovery:8761/eureka
+#      defaultZone: http://localhost:8761/eureka
