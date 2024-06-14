@@ -101,6 +101,22 @@ spring:
                 - PUT
                 - PATCH
               allowedHeaders: '*'
+        - id: authentication-service
+          uri: lb://authentication-service/
+          predicates:
+            - Path=/api/authentication/**
+          filters:
+            - RewritePath=/api/authentication(?<segment>/?.*), /$\{segment}
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - DELETE
+                - PUT
+                - PATCH
+              allowedHeaders: '*'
 
       enabled: on
     config:
