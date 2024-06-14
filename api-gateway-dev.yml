@@ -12,7 +12,7 @@ spring:
         cors-configurations:
           '[/**]':
             allowed-origins: "http://localhost:3000"
-            allowed-methods:               
+            allowed-methods:
               - GET
               - POST
               - DELETE
@@ -37,6 +37,39 @@ spring:
                 - PUT
                 - PATCH
               allowedHeaders: '*'
+        - id: device-monitoring-service
+          uri: lb://device-monitoring-service/
+          predicates:
+            - Path=/api/device-monitoring/**
+          filters:
+            - RewritePath=/api/device-monitoring(?<segment>/?.*), /$\{segment}
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - DELETE
+                - PUT
+                - PATCH
+              allowedHeaders: '*'
+        - id: stats-service
+          uri: lb://stats-service/
+          predicates:
+            - Path=/api/stats/**
+          filters:
+            - RewritePath=/api/stats(?<segment>/?.*), /$\{segment}
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - DELETE
+                - PUT
+                - PATCH
+              allowedHeaders: '*'
+
       enabled: on
     config:
       service-registry:
