@@ -69,6 +69,38 @@ spring:
                 - PUT
                 - PATCH
               allowedHeaders: '*'
+        - id: measurement-service
+          uri: lb://measurement-service/
+          predicates:
+            - Path=/api/measurement/**
+          filters:
+            - RewritePath=/api/measurement(?<segment>/?.*), /$\{segment}
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - DELETE
+                - PUT
+                - PATCH
+              allowedHeaders: '*'
+        - id: watering-service
+          uri: lb://watering-service/
+          predicates:
+            - Path=/api/watering/**
+          filters:
+            - RewritePath=/api/watering(?<segment>/?.*), /$\{segment}
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - DELETE
+                - PUT
+                - PATCH
+              allowedHeaders: '*'
 
       enabled: on
     config:
